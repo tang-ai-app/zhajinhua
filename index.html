@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>炸金花</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="stage">
+
+    <section id="lobby" class="screen active">
+      <header class="lobby-head">
+        <div class="logo">炸金花<small>ZHA · JIN · HUA</small></div>
+        <div class="profile">
+          <img id="lobbyAvatar" class="profile-avatar" alt="头像" title="点击更换头像">
+          <div class="profile-info">
+            <input id="nickname" maxlength="10" spellcheck="false" aria-label="昵称">
+            <div class="profile-chips"><i class="coin"></i><span id="lobbyChips">0</span></div>
+          </div>
+          <button id="btnRelief" class="btn small gold" hidden></button>
+        </div>
+      </header>
+
+      <div id="rooms" class="rooms"></div>
+
+      <div class="lobby-bottom">
+        <div class="panel">
+          <h3>我的战绩</h3>
+          <div id="stats" class="stats"></div>
+        </div>
+        <form id="settingsForm" class="panel settings" onsubmit="return false">
+          <h3>牌桌设置</h3>
+          <label>AI 难度
+            <select name="skill"><option value="easy">简单</option><option value="normal">普通</option><option value="hard">困难</option></select>
+          </label>
+          <label>AI 速度
+            <select name="speed"><option value="slow">慢</option><option value="normal">正常</option><option value="fast">快</option></select>
+          </label>
+          <label>封顶轮数
+            <select name="maxRounds"><option value="10">10 轮</option><option value="15">15 轮</option><option value="20">20 轮</option></select>
+          </label>
+          <label>思考时间
+            <select name="timer"><option value="15">15 秒</option><option value="30">30 秒</option><option value="60">60 秒</option></select>
+          </label>
+          <label class="check" title="开启后你更容易拿到全桌最大的牌"><input type="checkbox" name="luck"> 🍀 好运模式</label>
+          <label class="check"><input type="checkbox" name="rule235"> 235 吃豹子</label>
+          <label class="check"><input type="checkbox" name="revealAll"> 结算亮所有牌</label>
+          <label class="check"><input type="checkbox" name="sound"> 音效</label>
+          <label class="check"><input type="checkbox" name="voice"> 语音播报</label>
+        </form>
+        <div class="panel side-actions">
+          <button id="btnRulesLobby" class="btn">📖 游戏规则</button>
+          <button id="btnReset" class="btn ghost">重置存档</button>
+          <p class="credits">
+            扑克牌：<a href="https://code.google.com/archive/p/vector-playing-cards/" target="_blank" rel="noopener">Vector Playing Cards</a>（公有领域）<br>
+            头像：<a href="https://www.dicebear.com/styles/adventurer/" target="_blank" rel="noopener">DiceBear Adventurer</a> by Lisa Wischofsky（CC BY 4.0）<br>
+            仅供娱乐，虚拟筹码无任何价值
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="game" class="screen">
+      <div class="topbar">
+        <div class="top-left">
+          <button id="btnLeave" class="btn small ghost">← 离开</button>
+          <span id="roomName" class="room-label"></span>
+          <span id="handNo" class="hand-no"></span>
+        </div>
+        <div class="top-right">
+          <span class="my-chips"><i class="coin"></i><span id="myChips">0</span></span>
+          <button id="btnLog" class="btn small ghost">📜 记录</button>
+          <button id="btnRules" class="btn small ghost">📖 规则</button>
+          <button id="btnSound" class="btn small ghost"></button>
+          <button id="btnVoice" class="btn small ghost"></button>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="table-felt">
+          <div class="table-logo">炸金花</div>
+        </div>
+      </div>
+
+      <div class="center-info">
+        <div class="pot-label">底池</div>
+        <div class="pot-val"><i class="coin"></i><span id="potVal">0</span></div>
+        <div id="stakeInfo" class="stake-info"></div>
+      </div>
+      <div id="potChips" class="pot-chips"></div>
+      <div id="deck" class="deck"><div class="card"><div class="back"></div></div><div class="card"><div class="back"></div></div><div class="card"><div class="back"></div></div></div>
+      <div id="roundInfo" class="round-info"></div>
+
+      <div id="seats"></div>
+      <div id="actionBar" class="action-bar"></div>
+
+      <div id="log" class="log"><ul id="logList"></ul></div>
+    </section>
+
+    <div id="fx"></div>
+    <div id="toast"></div>
+    <div id="modal" class="modal hidden"><div id="modalBox" class="modal-box"></div></div>
+  </div>
+  <div class="rotate-hint">横屏游玩体验更佳 ↻</div>
+
+  <script src="js/rules.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
